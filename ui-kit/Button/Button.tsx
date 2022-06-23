@@ -43,6 +43,7 @@ const Button: FC<ButtonProps> = ({
                 ((pressed && theme.colors['tertiary-60']) || theme.colors.tertiary)) ||
               (variant === 'light' &&
                 ((pressed && theme.colors['grey350-40']) || theme.colors.light)),
+
             width:
               (size === 'small' && 150) ||
               (size === 'medium' && 200) ||

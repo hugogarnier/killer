@@ -1,5 +1,5 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import {ActivityIndicator, FlatList} from 'react-native';
 import {useIsFocused} from "@react-navigation/native";
 import {StatusBar} from 'expo-status-bar';
 import {collection, getFirestore, onSnapshot} from 'firebase/firestore';
@@ -11,11 +11,14 @@ import {Column, KText, Layout} from '@ui-kit';
 
 import NoParty from '../assets/svg/NoParty'
 import ListGame from '../components/ListGame';
+import {colors} from "@theme";
 
 const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
   const {user} = useContext(UserContext);
   const isFocused = useIsFocused()
   const [currentGames, setCurrentGames] = useState<Game[]>([]);
+  const [loading, setLoading] = useState<boolean>(true)
+
   const db = getFirestore();
 
   const unsubscribe = () =>
@@ -31,6 +34,7 @@ const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
       });
       const gamesSorted = games.sort((a, b) => Number(b.started) - Number(a.started));
       setCurrentGames(gamesSorted);
+      setLoading(false)
     });
 
   useEffect(() => {
@@ -38,7 +42,7 @@ const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
       unsubscribe();
     }
     return () => {
-      unsubscribe
+      unsubscribe()
     }
   }, [isFocused]);
 
@@ -53,7 +57,7 @@ const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
   return (
     <Layout logged>
       <StatusBar style="dark"/>
-      {(!!currentGames.length && (
+      {loading && <ActivityIndicator size="large" color={colors.primary}/> || (!!currentGames.length && (
         <FlatList
           data={currentGames}
           renderItem={renderItem}

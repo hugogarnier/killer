@@ -4,6 +4,6 @@ export type User = {
 };
 
 export type UserContextProps = {
-  user: User | undefined;
-  setUser?: (user: User) => void;
+  user: User;
+  setUser: (user: User) => void;
 };
