@@ -29,7 +29,8 @@ const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
           }
         });
       });
-      setCurrentGames(games);
+      const gamesSorted = games.sort((a, b) => Number(b.started) - Number(a.started));
+      setCurrentGames(gamesSorted);
     });
 
   useEffect(() => {

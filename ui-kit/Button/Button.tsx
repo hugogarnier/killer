@@ -8,16 +8,16 @@ import {Row} from '@ui-kit';
 
 import {ButtonProps} from './type';
 
-export const Button: FC<ButtonProps> = ({
-                                          children,
-                                          disabled = false,
-                                          onPress,
-                                          variant = 'primary',
-                                          size,
-                                          padding = 10,
-                                          googleIcon,
-                                          ...props
-                                        }) => {
+const Button: FC<ButtonProps> = ({
+                                   children,
+                                   disabled = false,
+                                   onPress,
+                                   variant = 'primary',
+                                   size,
+                                   padding = 10,
+                                   googleIcon,
+                                   ...props
+                                 }) => {
   const handlePress = async (): Promise<void> => {
     if (onPress) {
       onPress();
@@ -66,3 +66,5 @@ export const Button: FC<ButtonProps> = ({
     </Pressable>
   );
 };
+
+export default Button

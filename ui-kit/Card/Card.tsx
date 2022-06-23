@@ -41,6 +41,7 @@ const Card: FC<CardProps> = ({
               (size === 'medium' && 200) ||
               (size === 'large' && 250) ||
               (size === 'extraLarge' && 320) ||
+              size ||
               '100%',
             zIndex: 200,
           },

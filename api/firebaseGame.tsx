@@ -1,29 +1,20 @@
-import {useState} from "react";
 import {arrayUnion, doc, getDoc, getFirestore, setDoc, updateDoc,} from 'firebase/firestore';
 import ENV from "../constants/env";
 
 
-export const createGame = async (title: string, uid: string, displayName: string) => {
-  const [uriImage, setUriImage] = useState<string>()
-
-  const getImageUnsplash = async () => {
-    try {
-      const response = await fetch(
-        `${ENV.UNSPLASH_URL}${ENV.ACCESS_UNSPLASH}&topics=nature`
-      );
-      const json = await response.json();
-      setUriImage(json.urls['small'])
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export const createGame = async (title: string, uid: string, displayName: string | null) => {
+  let uriImage = ''
 
   try {
     const db = getFirestore();
     const randomCode = Math.random().toString(36).substring(2, 7).toUpperCase();
     const randomNumber = Math.floor(Math.random() * 100);
 
-    await getImageUnsplash()
+    const response = await fetch(
+      `${ENV.UNSPLASH_URL}${ENV.ACCESS_UNSPLASH}&topics=nature`
+    );
+    const json = await response.json();
+    uriImage = json.urls['small']
 
     await setDoc(doc(db, 'games', randomCode), {
       title: title,
@@ -43,12 +34,12 @@ export const createGame = async (title: string, uid: string, displayName: string
     });
 
     return randomCode;
-  } catch (error) {
+  } catch (error: any) {
     return error.code;
   }
 };
 
-export const joinGame = async (code, uid, displayName) => {
+export const joinGame = async (code: string, uid: string, displayName: string | null) => {
   try {
     const db = getFirestore();
     const randomNumber = Math.floor(Math.random() * 100);
@@ -64,7 +55,7 @@ export const joinGame = async (code, uid, displayName) => {
     });
 
     return code;
-  } catch (error) {
+  } catch (error: any) {
     return error.code;
   }
 };

@@ -1,33 +1,33 @@
-import React, {FC, useContext} from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 import {RootStackScreenProps} from "@types";
 import {UserContext} from "@contexts";
+import {doc, getFirestore, onSnapshot} from "firebase/firestore";
 
 const GameScreen: FC<RootStackScreenProps<'Game'>> = ({route}) => {
-  // const [, uid] = useContext(userContext);
   const {user} = useContext(UserContext);
-  // const db = getFirestore();
-  // const [game, setGame] = useState();
-  // const [players, setPlayers] = useState();
-  // const [activePlayer, setActivePlayer] = useState();
+  const db = getFirestore();
+  const [game, setGame] = useState();
+  const [players, setPlayers] = useState();
+  const [activePlayer, setActivePlayer] = useState();
 
-  // useEffect(() => {
-  //   const unsub = onSnapshot(doc(db, 'games', route.params.result), (doc) => {
-  //     const allPlayers = [];
-  //     doc.data().players.map((player) => {
-  //       return allPlayers.push(player);
-  //     });
-  //     const currentPlayer = doc.data().players.find((player) => player.id === uid);
-  //     setPlayers(allPlayers);
-  //     setGame(doc.data());
-  //     setActivePlayer(currentPlayer);
-  //     // console.log("Current data: ", doc.data());
-  //   });
-  //   return () => {
-  //     unsub;
-  //   };
-  // }, []);
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, 'games', route.params.result), (doc) => {
+      const allPlayers = [];
+      doc.data().players.map((player) => {
+        return allPlayers.push(player);
+      });
+      const currentPlayer = doc.data().players.find((player) => player.id === user.uid);
+      setPlayers(allPlayers);
+      setGame(doc.data());
+      setActivePlayer(currentPlayer);
+      console.log("Current data: ", doc.data());
+    });
+    return () => {
+      unsub;
+    };
+  }, []);
 
   // const renderItem = ({ item }) => <Text>{item.username}</Text>;
 

@@ -12,15 +12,16 @@ import Card from '@ui-kit/Card';
 import {KText} from "@ui-kit";
 import {colors, layout} from "@theme";
 import {FontAwesome} from '@expo/vector-icons';
+import {width} from "@theme/layout";
 
 type ListGameNavigationProp = CompositeNavigationProp<BottomTabNavigationProp<RootStackParamList, 'Game'>,
   StackNavigationProp<RootStackParamList>>;
 
 const ListGame = ({item}: { item: Game }) => {
   const navigation = useNavigation<ListGameNavigationProp>();
-
+  const customSize = width - 40
   return (
-    <Card size='extraLarge' uriImage={item.uriImage}
+    <Card size={customSize} uriImage={item.uriImage}
           onPress={() => navigation.navigate('Game', {result: item.code, name: `Code de la partie ${item.code}`})}>
       <View style={styles.container}>
         <View style={styles.left}>
@@ -35,7 +36,8 @@ const ListGame = ({item}: { item: Game }) => {
             padding: 10,
             backgroundColor: colors.light,
           }]}>
-            <KText variant={'body3'} style={{marginBottom: 5}}>Partie en cours</KText>
+            <KText variant={'body3'}
+                   style={{marginBottom: 5}}>{item.started && 'Partie en cours' || 'Partie non démarrée'}</KText>
             <KText variant={'body4'}>{item.players.length} joueurs</KText>
           </View>
         </View>
