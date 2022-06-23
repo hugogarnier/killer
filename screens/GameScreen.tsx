@@ -93,10 +93,11 @@ const GameScreen: FC<RootStackScreenProps<'Game'>> = ({route}) => {
               flex: 1,
               justifyContent: 'center',
             }}>
-              <Button variant={isMoreThanOnePlayer && 'tertiary' || 'primary'} padding={20}
-                      onPress={() => startGame(route.params.result)} disabled={isMoreThanOnePlayer}>
-                <KText variant={'button1'} color={'light'}>Démarrer la partie</KText>
-              </Button>
+              {game.admin === user.uid &&
+                  <Button variant={isMoreThanOnePlayer && 'tertiary' || 'primary'} padding={20}
+                          onPress={() => startGame(route.params.result)} disabled={isMoreThanOnePlayer}>
+                      <KText variant={'button1'} color={'light'}>Démarrer la partie</KText>
+                  </Button>}
             </View>
           </Column>)
         || (game.gameOver && activePlayer.id === user.uid && activePlayer.winner &&

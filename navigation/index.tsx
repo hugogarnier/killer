@@ -49,7 +49,7 @@ const GameTabNavigator = () => {
         <GameStack.Screen
           name="GameHome"
           component={HomeScreen}
-          options={() => ({
+          options={({navigation}: RootStackScreenProps<'GameHome'>) => ({
             headerShown: false,
           })}
         />
@@ -120,7 +120,7 @@ const RootNavigator = () => {
   const {user} = useContext(UserContext);
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
-      {(!user?.uid && (
+      {(!user.uid && (
         <Stack.Group>
           <Stack.Screen
             name="OnBoarding"

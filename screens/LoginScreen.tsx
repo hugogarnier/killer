@@ -5,13 +5,13 @@ import {useGoogleAuthentication} from '@hooks';
 import {RootStackScreenProps} from '@types';
 import {Button, Column, KText, KTextInput, Layout, Row} from '@ui-kit';
 
-import {loginDefault} from '../api/firebaseAuth';
+import {loginDefault} from '@api';
 
 // import loginWithCredential from '../utils/loginWithCredential';
 
 const LoginScreen: FC<RootStackScreenProps<'Login'>> = ({navigation}) => {
   const [googleAuthLoading, authWithGoogle] = useGoogleAuthentication();
-  const [email, setEmail] = useState('hugo3@test.com');
+  const [email, setEmail] = useState('hugo2@test.com');
   const [password, setPassword] = useState('azerty');
   const [error, setError] = useState('');
 
