@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-import { getAuth, onAuthStateChanged } from '@firebase/auth';
-import { StatusBar } from 'expo-status-bar';
-import { initializeApp } from 'firebase/app';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {getAuth, onAuthStateChanged} from '@firebase/auth';
+import {StatusBar} from 'expo-status-bar';
+import {initializeApp} from 'firebase/app';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import { firebaseConfig } from '@constants';
-import { UserContext } from '@contexts';
-import { User } from '@customTypes';
-import { useCachedResources } from '@hooks';
+import {firebaseConfig} from '@constants';
+import {UserContext} from '@contexts';
+import {User} from '@customTypes';
+import {useCachedResources} from '@hooks';
 
 import Navigation from './navigation';
 
@@ -27,11 +27,11 @@ const App = () => {
       if (userInfo) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        setUser({ uid: userInfo.uid, displayName: userInfo.displayName });
+        setUser({uid: userInfo.uid, displayName: userInfo.displayName});
         setIsLoading(false);
       } else {
         // User is signed out
-        setUser({ uid: '', displayName: '' });
+        setUser({uid: '', displayName: ''});
         setIsLoading(false);
       }
     });
@@ -42,9 +42,9 @@ const App = () => {
   } else {
     return (
       <SafeAreaProvider>
-        <UserContext.Provider value={{ user, setUser }}>
-          <Navigation />
-          <StatusBar style="light" />
+        <UserContext.Provider value={{user, setUser}}>
+          <Navigation/>
+          <StatusBar style="light"/>
         </UserContext.Provider>
       </SafeAreaProvider>
     );

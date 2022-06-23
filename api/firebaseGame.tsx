@@ -1,5 +1,6 @@
 import {arrayUnion, doc, getDoc, getFirestore, setDoc, updateDoc,} from 'firebase/firestore';
 import ENV from "../constants/env";
+import {Player} from "@customTypes";
 
 
 export const createGame = async (title: string, uid: string, displayName: string | null) => {
@@ -111,16 +112,16 @@ export const startGame = async (code) => {
   }
 };
 
-export const killPlayer = async (code, uid) => {
+export const killPlayer = async (code: string, uid: string) => {
   try {
     const db = getFirestore();
     const docGame = doc(db, 'games', code);
     const docPlayers = await getDoc(docGame);
     const players = docPlayers.data().players;
-    const playerActive = players.filter((player) => player.id === uid);
-    const playerKilled = players.filter((player) => player.id === playerActive[0].playerToKillId);
+    const playerActive = players.filter((player: Player) => player.id === uid);
+    const playerKilled = players.filter((player: Player) => player.id === playerActive[0].playerToKillId);
 
-    players.map((player) => {
+    players.map((player: Player) => {
       if (player.id === playerActive[0].id) {
         player.action = playerKilled[0].action;
         player.playerToKill = playerKilled[0].playerToKill;
@@ -130,10 +131,10 @@ export const killPlayer = async (code, uid) => {
       }
     });
 
-    const isWinner = players.filter((player) => player.alive === true);
+    const isWinner = players.filter((player: Player) => player.alive);
 
     if (isWinner.length < 2) {
-      players.map((player) => {
+      players.map((player: Player) => {
         if (player.id === isWinner[0].id) {
           player.winner = true;
         }

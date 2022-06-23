@@ -37,6 +37,9 @@ const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
     if (isFocused) {
       unsubscribe();
     }
+    return () => {
+      unsubscribe
+    }
   }, [isFocused]);
 
   const renderItem = ({item}: { item: Game }) => {

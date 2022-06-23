@@ -4,7 +4,7 @@ import {Pressable, Text, ViewStyle} from 'react-native';
 
 import GoogleLogo from '@assets/svg/GoogleLogo';
 import * as theme from '@theme';
-import {Row} from '@ui-kit';
+import Row from '@ui-kit/Row';
 
 import {ButtonProps} from './type';
 
