@@ -1,0 +1,3 @@
+# Theme
+
+To store colors, font sizes and styles etc...
