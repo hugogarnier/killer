@@ -1,16 +1,11 @@
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-  updateProfile,
-} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile,} from 'firebase/auth';
 
 export const loginDefault = async (email: string, password: string) => {
   const auth = getAuth();
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user;
-  } catch (error) {
+  } catch (error: any) {
     return error.code;
   }
 };
@@ -23,13 +18,13 @@ export const signupDefault = async (username: string, email: string, password: s
         const user = userCredential.user;
         // Updating user name
         if (auth.currentUser) {
-          await updateProfile(auth.currentUser, { displayName: username });
+          await updateProfile(auth.currentUser, {displayName: username});
           return user;
         }
       },
     );
     return newUser;
-  } catch (error) {
+  } catch (error: any) {
     return error.code;
   }
 };

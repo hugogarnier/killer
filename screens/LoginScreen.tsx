@@ -68,11 +68,11 @@ const LoginScreen: FC<RootStackScreenProps<'Login'>> = ({navigation}) => {
             SE CONNECTER
           </KText>
         </Button>
-        <Button variant="light" googleIcon disabled={!googleAuthLoading}>
+        {/*<Button variant="light" googleIcon disabled={!googleAuthLoading}>
           <KText variant="button3" align="center">
             SE CONNECTER AVEC GOOGLE
           </KText>
-        </Button>
+        </Button>*/}
       </Column>
       <Column spacingV={20}>
         <Row>

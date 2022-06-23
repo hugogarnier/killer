@@ -31,15 +31,15 @@ const specialColors = {
 } as const;
 
 const opacities = [
-  { label: 10, decimal: 25.5, hex: '20' },
-  { label: 20, decimal: 51, hex: '33' },
-  { label: 30, decimal: 76.5, hex: '4D' },
-  { label: 40, decimal: 102, hex: '66' },
-  { label: 50, decimal: 127.5, hex: '80' },
-  { label: 60, decimal: 153, hex: '99' },
-  { label: 70, decimal: 178.5, hex: 'B3' },
-  { label: 80, decimal: 204, hex: 'CC' },
-  { label: 90, decimal: 229.5, hex: 'E6' },
+  {label: 10, decimal: 25.5, hex: '20'},
+  {label: 20, decimal: 51, hex: '33'},
+  {label: 30, decimal: 76.5, hex: '4D'},
+  {label: 40, decimal: 102, hex: '66'},
+  {label: 50, decimal: 127.5, hex: '80'},
+  {label: 60, decimal: 153, hex: '99'},
+  {label: 70, decimal: 178.5, hex: 'B3'},
+  {label: 80, decimal: 204, hex: 'CC'},
+  {label: 90, decimal: 229.5, hex: 'E6'},
 ] as const;
 
 const getOpacityColors = <T, S extends string>(colorsList: T) => {
@@ -52,9 +52,9 @@ const getOpacityColors = <T, S extends string>(colorsList: T) => {
     const currentColor = new Array(9).fill(true).reduce((accOpacity, currentOpacity, index) => {
       const cId = index + 1;
       const cColorField = `${item[0]}-${cId * 10}`;
-      const cColor = { [cColorField]: `${item[1]}${opacities[index].hex}` };
+      const cColor = {[cColorField]: `${item[1]}${opacities[index].hex}`};
 
-      return { ...accOpacity, ...cColor };
+      return {...accOpacity, ...cColor};
     }, {});
 
     return {
@@ -69,5 +69,3 @@ export const colors = {
   ...preColors,
   ...getOpacityColors<typeof preColors, keyof typeof preColors>(preColors),
 };
-
-export type Colors = keyof typeof colors;
