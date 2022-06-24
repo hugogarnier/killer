@@ -11,8 +11,8 @@ import {loginDefault} from '@api';
 
 const LoginScreen: FC<RootStackScreenProps<'Login'>> = ({navigation}) => {
   const [googleAuthLoading, authWithGoogle] = useGoogleAuthentication();
-  const [email, setEmail] = useState('hugo2@test.com');
-  const [password, setPassword] = useState('azerty');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   // const login = async (credential, data) => {

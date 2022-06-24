@@ -1,5 +1,5 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import {useIsFocused} from "@react-navigation/native";
 import {StatusBar} from 'expo-status-bar';
 import {collection, getFirestore, onSnapshot} from 'firebase/firestore';
@@ -58,12 +58,16 @@ const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
     <Layout logged>
       <StatusBar style="dark"/>
       {loading && <ActivityIndicator size="large" color={colors.primary}/> || (!!currentGames.length && (
-        <FlatList
-          data={currentGames}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.code}
-          showsVerticalScrollIndicator={false}
-        />
+        <View style={{marginTop: 20}}>
+          <FlatList
+            data={currentGames}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.code}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+
+
       )) || (
         <Column>
           <NoParty width={300}/>

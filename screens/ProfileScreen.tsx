@@ -82,7 +82,7 @@ const ProfileScreen: FC<RootStackScreenProps<'Profile'>> = ({navigation}) => {
   return (
     <Layout logged>
       <StatusBar style="dark"/>
-      <Column style={{flex: .6}}>
+      <Column style={{flex: .6, marginTop: 30}}>
         <Button size="small" onPress={logout}>
           <KText variant="button3" align="center" color="light">
             SE DECONNECTER
