@@ -64,7 +64,7 @@ const SignupScreen: FC<SignupScreenProp> = ({navigation}) => {
       <Column spacingV={20}>
         <Row>
           <KText variant="body2" style={{marginRight: 20}}>
-            Pas de compte ?
+            Déjà un compte ?
           </KText>
           <Button onPress={() => navigation.navigate('Login')} variant="tertiary" size="small">
             <KText variant="button3" align="center" color="dark100">

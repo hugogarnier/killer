@@ -1,6 +1,6 @@
 export type User = {
   uid: string;
-  displayName: string | null;
+  displayName: string;
 };
 
 export type UserContextProps = {

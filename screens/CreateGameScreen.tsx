@@ -17,6 +17,7 @@ const CreateGameScreen: FC<RootStackScreenProps<'Create'>> = ({navigation}) => {
   const [errorTitle, setErrorTitle] = useState<string>('')
   const [errorCode, setErrorCode] = useState<string>('')
 
+  console.log(user)
   const handleCreateGame = async () => {
     if (user) {
       const result = await createGame(title, user.uid, user.displayName);
@@ -30,6 +31,8 @@ const CreateGameScreen: FC<RootStackScreenProps<'Create'>> = ({navigation}) => {
         setTitle('');
         setErrorTitle('Erreur veuillez réessayer')
       }
+    } else {
+      // do nothing
     }
   };
 
