@@ -17,7 +17,6 @@ const CreateGameScreen: FC<RootStackScreenProps<'Create'>> = ({navigation}) => {
   const [errorTitle, setErrorTitle] = useState<string>('')
   const [errorCode, setErrorCode] = useState<string>('')
 
-  console.log(user)
   const handleCreateGame = async () => {
     if (user) {
       const result = await createGame(title, user.uid, user.displayName);
@@ -56,7 +55,7 @@ const CreateGameScreen: FC<RootStackScreenProps<'Create'>> = ({navigation}) => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{flex: 1, marginTop: 30}}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{flex: 1, marginTop: 40}}>
       <ScrollView>
         <Layout logged>
           <StatusBar style="dark"/>

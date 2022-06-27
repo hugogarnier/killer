@@ -38,7 +38,7 @@
 ## About The Project
 
 <p align="center">
-	<img src="https://github.com/hugogarnier/talkie/blob/main/demo.gif" width="800">
+	<img src="https://github.com/hugogarnier/killer/blob/main/assets/github/video.gif" width="800">
 </p>
 
 <!-- Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description` -->
@@ -51,19 +51,19 @@
     <img
     width="190"
     alt="Screen 1"
-    src="https://github.com/hugogarnier/talkie/blob/main/screen1.png">
+    src="https://github.com/hugogarnier/killer/blob/main/assets/github/home.png">
     <img
     width="190"
     alt="Screen 2"
-    src="https://github.com/hugogarnier/talkie/blob/main/screen2.png">
+    src="https://github.com/hugogarnier/killer/blob/main/assets/github/create.png">
     <img
     width="190"
     alt="Screen 3"
-    src="https://github.com/hugogarnier/talkie/blob/main/screen3.png">
+    src="https://github.com/hugogarnier/killer/blob/main/assets/github/party.png">
     <img
     width="190"
     alt="Screen 4"
-    src="https://github.com/hugogarnier/talkie/blob/main/screen4.png">
+    src="https://github.com/hugogarnier/killer/blob/main/assets/github/profile.png">
 </p>
 
 ### Built With

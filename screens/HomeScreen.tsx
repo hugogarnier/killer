@@ -58,7 +58,7 @@ const HomeScreen: FC<RootStackScreenProps<'Home'>> = () => {
     <Layout logged>
       <StatusBar style="dark"/>
       {loading && <ActivityIndicator size="large" color={colors.primary}/> || (!!currentGames.length && (
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: 40}}>
           <FlatList
             data={currentGames}
             renderItem={renderItem}

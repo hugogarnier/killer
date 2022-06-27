@@ -21,7 +21,6 @@ export const signupDefault = async (username: string, email: string, password: s
           await updateProfile(auth.currentUser, {displayName: username});
           return user;
         }
-        return user
       },
     );
     return newUser;

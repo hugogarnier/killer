@@ -56,6 +56,7 @@ const LoginScreen: FC<RootStackScreenProps<'Login'>> = ({navigation}) => {
           autoCapitalize="none"
           placeholder="mot de passe"
           value={password}
+          secureTextEntry={true}
           onChangeText={(text) => setPassword(text)}
         />
         {(error && (

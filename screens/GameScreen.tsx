@@ -1,5 +1,5 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, ImageBackground, Platform, Share, View} from 'react-native';
+import {ActivityIndicator, FlatList, ImageBackground, Share, View} from 'react-native';
 
 import {RootStackScreenProps} from "@types";
 import {UserContext} from "@contexts";
@@ -40,22 +40,28 @@ const GameScreen: FC<RootStackScreenProps<'Game'>> = ({route}) => {
     }
   };
 
+  const unsubscribe = () =>
+    onSnapshot(doc(db, 'games', route.params.result), (doc) => {
+      const allPlayers: Player[] = [];
+      const data = doc.data()
+      if (data) {
+        data.players.map((player: Player) => {
+          return allPlayers.push(player);
+        });
+        const currentPlayer: Player = data.players.find((player: Player) => player.id === user.uid);
+        setPlayers(allPlayers);
+        setGame(data as Game);
+        setActivePlayer(currentPlayer);
+        setLoading(false)
+      }
+    });
+
   useEffect(() => {
     if (isFocused) {
-      onSnapshot(doc(db, 'games', route.params.result), (doc) => {
-        const allPlayers: Player[] = [];
-        const data = doc.data()
-        if (data) {
-          data.players.map((player: Player) => {
-            return allPlayers.push(player);
-          });
-          const currentPlayer: Player = data.players.find((player: Player) => player.id === user.uid);
-          setPlayers(allPlayers);
-          setGame(data as Game);
-          setActivePlayer(currentPlayer);
-          setLoading(false)
-        }
-      });
+      unsubscribe();
+    }
+    return () => {
+      unsubscribe()
     }
   }, [isFocused]);
 
@@ -75,13 +81,13 @@ const GameScreen: FC<RootStackScreenProps<'Game'>> = ({route}) => {
         (!game.gameOver) &&
           <Column style={{
             alignItems: 'flex-start',
-            marginTop: ((Platform.OS === 'ios' && 44) || 20)
+            marginTop: 80
           }}>
               <FontAwesome name="chevron-left" size={20} onPress={() => navigation.goBack()}/>
           </Column>
       }
       {loading && <ActivityIndicator size="large" color={colors.primary}/> || !game.started && (
-          <Column style={{flex: 2, marginTop: 40}}>
+          <Column style={{flex: 2}}>
             <View style={{flexDirection: 'row'}}>
               <KText variant={'h3'} style={{paddingRight: 20, marginBottom: 30}}>{route.params.result}</KText>
               <FontAwesome name="share-alt" size={30} color={colors.primary} onPress={onShare}/>

@@ -1,9 +1,9 @@
 export type User = {
   uid: string;
-  displayName: string;
+  displayName: string | null;
 };
 
 export type UserContextProps = {
-  user: User;
+  user: User | undefined;
   setUser: (user: User) => void;
 };

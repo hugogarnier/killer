@@ -24,7 +24,7 @@ const App = () => {
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (userInfo) => {
-      if (userInfo && userInfo.displayName) {
+      if (userInfo) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         setUser({uid: userInfo.uid, displayName: userInfo.displayName});

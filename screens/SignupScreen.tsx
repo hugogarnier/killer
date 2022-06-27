@@ -1,14 +1,16 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useContext, useState} from 'react';
 
 import Register from '@assets/svg/Register';
 import {RootStackScreenProps} from '@types';
 import {Button, Column, KText, KTextInput, Layout, Row} from '@ui-kit';
 
 import {signupDefault} from '../api/firebaseAuth';
+import {UserContext} from "@contexts";
 
 export type SignupScreenProp = RootStackScreenProps<'Signup'>;
 
 const SignupScreen: FC<SignupScreenProp> = ({navigation}) => {
+  const {user, setUser} = useContext(UserContext)
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [username, setUsername] = useState<string>('');
@@ -20,6 +22,7 @@ const SignupScreen: FC<SignupScreenProp> = ({navigation}) => {
       setError('Email déjà utilisé');
     } else {
       setError('');
+      setUser({uid: userCred.uid, displayName: userCred.displayName})
     }
   };
 
@@ -48,6 +51,7 @@ const SignupScreen: FC<SignupScreenProp> = ({navigation}) => {
           autoCapitalize="none"
           placeholder="mot de passe"
           value={password}
+          secureTextEntry={true}
           onChangeText={(text) => setPassword(text)}
         />
         {(error && (
